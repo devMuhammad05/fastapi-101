@@ -47,7 +47,6 @@ def get_student(student_id: int = Path(..., description = "The student Id", gt=0
         return {"Error" : "Student does not exits"}
     return students[student_id]
 
-
 @app.get("/get-by-name")
 # python does not support having an optional query parameter before a required parameter so you can add "*" to bypass it 
 def get_student(*, name: str, student_id: Optional[int] = None):
@@ -55,7 +54,6 @@ def get_student(*, name: str, student_id: Optional[int] = None):
         if students[student_id]["name"] == name:
             return students[student_id] 
     return {"Data": "Not found"}
-
 
 # POST
 @app.post("/students/{student_id}")
@@ -69,7 +67,7 @@ def create_student(student_id: int, student: Student):
 
 
 # PUT
-@app.put("/update-student/{student_id}")
+@app.put("students/{student_id}")
 def update_student(student_id: int, student: UpdateStudent):
     if student_id not in students:
         return {"Error" : "Student does not exits"}
