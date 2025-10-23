@@ -5,11 +5,28 @@ app = FastAPI()
 
 
 BANDS = [
-    {'id': 1, 'name' : 'The kinks', 'genre' : 'Rock'},
-    {'id': 2, 'name' : 'Aphex Twin', 'genre' : 'Electronic'},
-    {'id': 3, 'name' : 'Slowdive', 'genre' : 'Metal'},
-    {'id': 4, 'name' : 'Wu-Tang Clan', 'genre' : 'Hip-Hop'},
+    {'id': 1, 'name': 'The kinks', 'genre': 'Rock'},
+    {
+        'id': 2,
+        'name': 'Aphex Twin',
+        'genre': 'Electronic',
+        'albums': [{
+            'title': 'Selected Ambient Works 85–92',
+            'release_date': '1992-11-09'
+        }]
+    },
+    {
+        'id': 3,
+        'name': 'Slowdive',
+        'genre': 'Metal',
+        'albums': [{
+            'title': 'Souvlaki',
+            'release_date': '1993-06-01'
+        }]
+    },
+    {'id': 4, 'name': 'Wu-Tang Clan', 'genre': 'Hip-Hop'},
 ]
+
 
 @app.get('/bands')
 async def bands() -> list[Band]:
