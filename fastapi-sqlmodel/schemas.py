@@ -28,9 +28,9 @@ class BandBase(BaseModel):
 
 class BandCreate(BandBase):
     pass
-    # @field_validator('genre', mode='before')
-    # def title_case_genre(cls, value):
-    #     return value.title() 
+    @field_validator('genre', mode='before')
+    def title_case_genre(cls, value):
+        return value.title() 
 
 class BandWithID(BandBase):
     id: int
