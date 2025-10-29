@@ -1,6 +1,8 @@
 from datetime import date
 from enum import Enum
 from pydantic import BaseModel, field_validator
+from sqlmodel import SQLModel, Field
+
 
 class GenreURLChoices(Enum):
     ROCK = 'rock'
@@ -15,9 +17,13 @@ class GenreChoices(Enum):
     METAL = 'Metal'
     HIP_HOP = 'Hip-hop'
 
-class Album(BaseModel):
+class AlbumBase(SQLModel):
     title: str
     release_date: date
+
+
+class Album(AlbumBase, table=True):
+    id: int = Field(default=None, primary_key=True) 
 
 
 class BandBase(BaseModel):
